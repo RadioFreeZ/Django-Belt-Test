@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6">
+          <h2>Hello, {{request.session.name}}! These are the job details!</h2>
+        </div>
+        <div class="col-md-1">
+          <a href="/dashboard">Dashboard</a>
+        </div>
+        <div class="col-md-1">
+          <a href="/logout">Logout</a>
+        </div>
+      </div>
+      <h3>{{job.title}}</h3>
+      <div class="container" style="border: 2px solid black">
+        <p>{{job.description}}</p>
+        <p>Location: {{job.location}}</p>
+        <p>Posted by: {{user.first_name}}</p>
+        <p>Posted on: {{job.created_at}}</p>
+        <p>Categories: {{job.category}}</p>
+      </div>
+      <a href="{% url 'add' id=job.id %}">Add to my jobs</a>
+    </div>
+  </body>
+</html>

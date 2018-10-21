@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6">
+          <h2>Hello {{request.session.name}}! Let's edit your job!</h2>
+        </div>
+        <div class="col-md-1">
+          <a href="/logout">Logout</a>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+
+      {% if messages %}
+        <ul class="messages">
+          {% for message in messages %}
+            <li class="{{ message.tags }} text-danger">{{ message }}</li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    </div>
+      <div class="container">
+      <form class="form-group" action="{% url 'update' id=job_id %}" method="post">
+        {% csrf_token %}
+        <div class="form-group">
+        <label for="title">Title:</label>
+        <input type="text" name="title" value="{{jobs.title}}">
+        </div>
+        <div class="form-group">
+        <label for="description">Description:</label>
+        <input type="text" name="description" value="{{jobs.description}}">
+        </div>
+        <div class="form-group">
+        <label for="location">Location:</label>
+        <input type="text" name="location" value="{{jobs.location}}">
+        </div>
+        <button type="submit" formaction="{% url 'dashboard' %}">Cancel</button>
+        <button type="submit" name="button" class="btn btn-primary">Submit</button>
+        <div class="form-group">
+      </form>
+
+    </div>
+  </body>
+</html>
